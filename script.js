@@ -3,10 +3,10 @@ function getComputerChoice() {
     // console.log("Random number = " + randomNumber);
 
     if (randomNumber < 33) {
-        return "Rock";
+        return "rock";
     } else if (randomNumber >= 33 && randomNumber < 66) {
-        return "Paper";
+        return "paper";
     } else {
-        return "Scissor";
+        return "scissors";
     }
 }
