@@ -72,13 +72,33 @@ function playRound(playerSelection, computerSelection) {
 /* Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end. */
 
 function game() {
+    // create variable to save player score and computer score
+    let playerScore = 0;
+    let computerScore = 0;
+    // create variable to save result of a round
+    let result = "";
+
     // loop for 5 rounds
     for (let round = 1; round <= 5; round++) {
         // get player selection
         const playerSelection = prompt(`Round ${round}\nType Rock, Paper, or Scissors: `);
         // get computer selection
         const computerSelection = getComputerChoice();
-        // play round, use console.log to display return value
-        console.log(playRound(playerSelection, computerSelection));
+        // play round
+        result = playRound(playerSelection, computerSelection);
+        // save score to respective winner
+        if (result === "win") {
+            playerScore++;
+        } else if (result === "lose") {
+            computerScore++;
+        // repeat round if player enter invalid input
+        } else if (result === "invalid") {
+            round--;
+        }
     }
+    // higher score is the winner
+    console.log((playerScore > computerScore ? "You are the winner!" : "Better luck next time!") + ` You score ${playerScore}:${computerScore} against the computer.`)
 }
+
+// play game
+game();
