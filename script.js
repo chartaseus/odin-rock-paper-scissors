@@ -19,7 +19,8 @@ function playRound(playerSelection, computerSelection) {
     
     // Throw error for invalid input
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-        return 'Invalid input. Enter rock, paper, or scissors.'
+        console.log("Invalid input. Enter rock, paper, or scissors.")
+        return "invalid";
     }
     /* Possible combinations:
         player   >< computer
@@ -37,7 +38,8 @@ function playRound(playerSelection, computerSelection) {
 
     // If player selection = computer selection then it's a tie
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        console.log("It's a tie!");
+        return "tie";
     }
 
     // rock >< paper, paper >< scissors, scissors >< rock => lose
@@ -46,7 +48,8 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "scissors")
         || (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        return "lose";
     }
 
     // rock >< scissors, paper >< rock, scissors >< paper => win
@@ -55,14 +58,16 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "rock")
         || (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        return "win";
     }
 }
 
 // Testing playRound
 // const playerSelection = "rock";
 // const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection, computerSelection));
+// // console.log(playRound(playerSelection, computerSelection));
+// playRound(playerSelection, computerSelection);
 
 /* Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end. */
 
