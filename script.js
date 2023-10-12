@@ -97,7 +97,7 @@ function game() {
         }
     }
     // higher score is the winner
-    console.log((playerScore > computerScore ? "You are the winner!" : "Better luck next time!") + ` You score ${playerScore}:${computerScore} against the computer.`)
+    console.log((playerScore > computerScore ? "You are the winner!" : (playerScore == computerScore ? "It's a tie!" : "Better luck next time!")) + ` You score ${playerScore}:${computerScore} against the computer.`)
 }
 
 // play game
