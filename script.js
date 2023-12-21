@@ -78,10 +78,10 @@ function game() {
     // create variable to save result of a round
     let result = "";
 
-    // loop for 5 rounds
-    for (let round = 1; round <= 5; round++) {
+    // Stops the game once one player reach 5 points
+    while (playerScore < 5 && computerScore < 5) {
         // get player selection
-        const playerSelection = prompt(`Round ${round}\nType Rock, Paper, or Scissors: `);
+        const playerSelection = prompt(`Type Rock, Paper, or Scissors: `);
         // get computer selection
         const computerSelection = getComputerChoice();
         // play round
@@ -91,11 +91,10 @@ function game() {
             playerScore++;
         } else if (result === "lose") {
             computerScore++;
-        // repeat round if player enter invalid input
-        } else if (result === "invalid") {
-            round--;
         }
+        // TODO display the running score 
     }
+
     // higher score is the winner
     console.log((playerScore > computerScore ? "You are the winner!" : (playerScore == computerScore ? "It's a tie!" : "Better luck next time!")) + ` You score ${playerScore}:${computerScore} against the computer.`)
 }
