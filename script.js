@@ -69,35 +69,28 @@ function playRound(playerSelection, computerSelection) {
 // // console.log(playRound(playerSelection, computerSelection));
 // playRound(playerSelection, computerSelection);
 
-/* Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end. */
+let playerScore = 0;
+let computerScore = 0;
+// create variable to save result of a round
+let result = "";
+const buttons = document.querySelectorAll("button");
 
-function game() {
-    // create variable to save player score and computer score
-    let playerScore = 0;
-    let computerScore = 0;
-    // create variable to save result of a round
-    let result = "";
-
-    // Stops the game once one player reach 5 points
-    while (playerScore < 5 && computerScore < 5) {
-        // get player selection
-        const playerSelection = prompt(`Type Rock, Paper, or Scissors: `);
-        // get computer selection
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const playerSelection = button.id;
         const computerSelection = getComputerChoice();
-        // play round
         result = playRound(playerSelection, computerSelection);
-        // save score to respective winner
         if (result === "win") {
             playerScore++;
         } else if (result === "lose") {
             computerScore++;
         }
-        // TODO display the running score 
-    }
-
-    // higher score is the winner
-    console.log((playerScore > computerScore ? "You are the winner!" : (playerScore == computerScore ? "It's a tie!" : "Better luck next time!")) + ` You score ${playerScore}:${computerScore} against the computer.`)
-}
-
-// play game
-game();
+        console.log(`Your score = ${playerScore} | Computer's score = ${computerScore}`)
+        if (playerScore == 5 || computerScore == 5) {
+            if (playerScore > computerScore) {console.log("You are the winner!")}
+            else {console.log("Better luck next time!")}
+            playerScore = 0;
+            computerScore = 0;
+        }
+    })
+})
