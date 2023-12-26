@@ -1,6 +1,5 @@
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 100);
-    // console.log("Random number = " + randomNumber);
 
     if (randomNumber < 33) {
         return "rock";
@@ -14,14 +13,6 @@ function getComputerChoice() {
 // create a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection
 function playRound(playerSelection, computerSelection) {
 
-    // Make your function’s playerSelection parameter case-insensitive
-    playerSelection = playerSelection.toLowerCase();
-    
-    // Throw error for invalid input
-    if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-        console.log("Invalid input. Enter rock, paper, or scissors.")
-        return "invalid";
-    }
     /* Possible combinations:
         player   >< computer
         --------------------
