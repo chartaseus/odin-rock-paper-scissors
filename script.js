@@ -12,6 +12,8 @@ function getComputerChoice() {
 
 // create a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection
 function playRound(playerSelection, computerSelection) {
+    const para = document.createElement("p");
+    scoreboard.appendChild(para);
 
     /* Possible combinations:
         player   >< computer
@@ -29,7 +31,7 @@ function playRound(playerSelection, computerSelection) {
 
     // If player selection = computer selection then it's a tie
     if (playerSelection === computerSelection) {
-        scoreboard.textContent = "It's a tie!";
+        para.textContent = "It's a tie!";
         return "tie";
     }
 
@@ -39,7 +41,7 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "scissors")
         || (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-        scoreboard.textContent = `You lose! ${computerSelection} beats ${playerSelection}.`;
+        para.textContent = `You lose! ${computerSelection} beats ${playerSelection}.`;
         return "lose";
     }
 
@@ -49,7 +51,7 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "rock")
         || (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        scoreboard.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
+        para.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
         return "win";
     }
 }
@@ -67,6 +69,11 @@ const scoreboard = document.querySelector(".scoreboard");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
+        // while (scoreboard.hasChildNodes()) {
+        //     scoreboard.removeChild(scoreboard.firstChild);
+        //   }
+
+        scoreboard.textContent = ""; //clear scoreboard
         const playerSelection = button.id;
         const computerSelection = getComputerChoice();
         const result = playRound(playerSelection, computerSelection);
@@ -76,12 +83,16 @@ buttons.forEach((button) => {
             computerScore++;
         }
 
-        scoreboard.textContent += ` Your score = ${playerScore} | Computer's score = ${computerScore}.`
+        const para = document.createElement("p");
+        scoreboard.appendChild(para);
+        para.textContent = `Your score = ${playerScore} | Computer's score = ${computerScore}.`
         if (playerScore == 5 || computerScore == 5) {
+            scoreboard.removeChild(scoreboard.firstChild);
+
             if (playerScore > computerScore) {
-                scoreboard.textContent = `You are the winner! You score ${playerScore}:${computerScore} against the computer.`
+                para.textContent = `You are the winner! You score ${playerScore}:${computerScore} against the computer.`
             } else {
-                scoreboard.textContent = `Better luck next time! You score ${playerScore}:${computerScore} against the computer.`
+                para.textContent = `Better luck next time! You score ${playerScore}:${computerScore} against the computer.`
             }
             playerScore = 0;
             computerScore = 0;
