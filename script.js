@@ -29,7 +29,7 @@ function playRound(playerSelection, computerSelection) {
 
     // If player selection = computer selection then it's a tie
     if (playerSelection === computerSelection) {
-        console.log("It's a tie!");
+        scoreboard.textContent = "It's a tie!";
         return "tie";
     }
 
@@ -39,7 +39,7 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "scissors")
         || (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        scoreboard.textContent = `You lose! ${computerSelection} beats ${playerSelection}.`;
         return "lose";
     }
 
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
         || (playerSelection === "paper" && computerSelection === "rock")
         || (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        scoreboard.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
         return "win";
     }
 }
@@ -63,6 +63,7 @@ function playRound(playerSelection, computerSelection) {
 let playerScore = 0;
 let computerScore = 0;
 const buttons = document.querySelectorAll("button");
+const scoreboard = document.querySelector(".scoreboard");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -74,10 +75,14 @@ buttons.forEach((button) => {
         } else if (result === "lose") {
             computerScore++;
         }
-        console.log(`Your score = ${playerScore} | Computer's score = ${computerScore}`)
+
+        scoreboard.textContent += ` Your score = ${playerScore} | Computer's score = ${computerScore}.`
         if (playerScore == 5 || computerScore == 5) {
-            if (playerScore > computerScore) {console.log("You are the winner!")}
-            else {console.log("Better luck next time!")}
+            if (playerScore > computerScore) {
+                scoreboard.textContent = `You are the winner! You score ${playerScore}:${computerScore} against the computer.`
+            } else {
+                scoreboard.textContent = `Better luck next time! You score ${playerScore}:${computerScore} against the computer.`
+            }
             playerScore = 0;
             computerScore = 0;
         }
