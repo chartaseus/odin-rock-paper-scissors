@@ -62,15 +62,13 @@ function playRound(playerSelection, computerSelection) {
 
 let playerScore = 0;
 let computerScore = 0;
-// create variable to save result of a round
-let result = "";
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         const playerSelection = button.id;
         const computerSelection = getComputerChoice();
-        result = playRound(playerSelection, computerSelection);
+        const result = playRound(playerSelection, computerSelection);
         if (result === "win") {
             playerScore++;
         } else if (result === "lose") {
